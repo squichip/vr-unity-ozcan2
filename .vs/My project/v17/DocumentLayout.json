@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\unity\\My project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\unity\\My project\\Assets\\ClimbProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ClimbProvider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\unity\\My project\\Assets\\BasketCourtBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\BasketCourtBuilder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\unity\\My project\\Assets\\ScoreTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\ScoreTrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\unity\\My project\\Assets\\EngelGorev.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\EngelGorev.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,6 +35,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "ClimbProvider.cs",
+              "DocumentMoniker": "D:\\unity\\My project\\Assets\\ClimbProvider.cs",
+              "RelativeDocumentMoniker": "Assets\\ClimbProvider.cs",
+              "ToolTip": "D:\\unity\\My project\\Assets\\ClimbProvider.cs",
+              "RelativeToolTip": "Assets\\ClimbProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T22:53:25.146Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BasketCourtBuilder.cs",
+              "DocumentMoniker": "D:\\unity\\My project\\Assets\\BasketCourtBuilder.cs",
+              "RelativeDocumentMoniker": "Assets\\BasketCourtBuilder.cs",
+              "ToolTip": "D:\\unity\\My project\\Assets\\BasketCourtBuilder.cs",
+              "RelativeToolTip": "Assets\\BasketCourtBuilder.cs",
+              "ViewState": "AgIAAFUAAAAAAAAAAADwv3sAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T17:57:07.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ScoreTrigger.cs",
+              "DocumentMoniker": "D:\\unity\\My project\\Assets\\ScoreTrigger.cs",
+              "RelativeDocumentMoniker": "Assets\\ScoreTrigger.cs",
+              "ToolTip": "D:\\unity\\My project\\Assets\\ScoreTrigger.cs",
+              "RelativeToolTip": "Assets\\ScoreTrigger.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T14:46:35.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "EngelGorev.cs",
               "DocumentMoniker": "D:\\unity\\My project\\Assets\\EngelGorev.cs",
               "RelativeDocumentMoniker": "Assets\\EngelGorev.cs",
@@ -35,7 +86,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "GoalZoneTrigger.cs",
               "DocumentMoniker": "D:\\unity\\My project\\Assets\\GoalZoneTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\GoalZoneTrigger.cs",
@@ -43,8 +94,7 @@
               "RelativeToolTip": "Assets\\GoalZoneTrigger.cs",
               "ViewState": "AgIAAAUAAAAAAAAAAADwvysAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-09T18:43:27.216Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-09T18:43:27.216Z"
             }
           ]
         }
