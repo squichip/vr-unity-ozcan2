@@ -4,7 +4,31 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MainMenuScene.unity
+    guid: 45480a5cf41503d4fb0e2794283c11e8
+  - enabled: 0
+    path: Assets/BasketScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/SportScene2.unity
+    guid: 947046382791df345bc82128b6b4a5a7
+  - enabled: 1
+    path: Assets/SportScene3.unity
+    guid: 64f66f9c406fc3b4cb72d97c82c4c9fc
+  - enabled: 0
+    path: Assets/alibozuj.unity
+    guid: 946ccb8f5d9fc6145aecfab34195678d
+  - enabled: 0
+    path: Assets/alibozuk2.unity
+    guid: 3f81b03a14c7a9744ab93a729d90951d
+  - enabled: 1
+    path: Assets/onur/onuryeni.unity
+    guid: 8ed584fe48f96904c9f2022b52def420
+  - enabled: 1
+    path: Assets/ali.unity
+    guid: 175ae443e9d97ea4da44fa515730a7dc
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 40fd884b00a0b294ba5d9b75dad6f46e, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
