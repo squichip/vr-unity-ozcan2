@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/alibozuk2.unity
     guid: 3f81b03a14c7a9744ab93a729d90951d
   - enabled: 1
-    path: Assets/onur/onuryeni.unity
+    path: Assets/onur/Proje Sahneleri/onur.unity
     guid: 8ed584fe48f96904c9f2022b52def420
   - enabled: 1
     path: Assets/ali.unity

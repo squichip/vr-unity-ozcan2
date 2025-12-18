@@ -5004,7 +5004,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5368,8 +5368,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1, z: 12.351575}
+  m_Center: {x: -0.0046633673, y: 0, z: 0.19783828}
 --- !u!23 &900764984
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7430,7 +7430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4152492640254223615, guid: b784da870b94d874eadfdc67f3a40aa8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.3
+      value: 10.4
       objectReference: {fileID: 0}
     - target: {fileID: 4152492640254223615, guid: b784da870b94d874eadfdc67f3a40aa8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9066,7 +9066,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.056
+      value: 1.377
       objectReference: {fileID: 0}
     - target: {fileID: 1767192434, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11276,11 +11276,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1895455460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4880d96d322fe61498a256d7e5fa8435, type: 3}
+  m_Script: {fileID: 11500000, guid: c408c0377206687418ad89919bafcdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftController: {fileID: 0}
-  rightController: {fileID: 0}
+  leftController: {fileID: 2135941107}
+  rightController: {fileID: 1549594829}
 --- !u!4 &1913611252 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8435225891291756128, guid: 288bff42e8e9b5a42bf0557e4e230fa0, type: 3}
