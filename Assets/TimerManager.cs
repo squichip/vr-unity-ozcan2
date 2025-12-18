@@ -12,26 +12,31 @@ public class TimerManager : MonoBehaviour
     public int totalObjects = 5;
 
     [Header("Exit Settings")]
-    public Transform basketSpawnPoint; // Sahnedeki BasketSpawnPoint
+    public Transform basketSpawnPoint;
 
     // XR
-    private XROrigin xrOrigin;
+    [Header("XR")]
+    [SerializeField] private XROrigin xrOrigin;
 
-    // UI Roots
-    private GameObject gameCanvas;
-    private GameObject startPanel;
-    private GameObject gameUIRoot;
-    private GameObject endPanel;
+    [Header("UI Roots (Canvas Objects)")]
+    public GameObject startCanvasRoot;   // GameCanvas (World Space)
+    public GameObject hudCanvasRoot;     // HUDCanvas (Screen Space Overlay)
+    public GameObject endCanvasRoot;     // EndCanvas (Screen Space - Camera)
 
-    // UI Texts
-    private TextMeshProUGUI timerText;
-    private TextMeshProUGUI endTitleText;
-    private TextMeshProUGUI endScoreText;
+    [Header("UI Panels")]
+    public GameObject startPanel;        // StartPanel (World)
+    public GameObject gameUIRoot;        // GameUIRoot (HUD)
+    public GameObject endPanel;          // EndPanel (EndCanvas altında)
 
-    // Buttons
-    private Button startButton;
-    private Button replayButton;
-    private Button exitButton;
+    [Header("UI Texts")]
+    public TextMeshProUGUI timerText;    // HUD timer
+    public TextMeshProUGUI endTitleText; // EndPanel title
+    public TextMeshProUGUI endScoreText; // EndPanel score
+
+    [Header("Buttons")]
+    public Button startButton;
+    public Button replayButton;
+    public Button exitButton;
 
     // State
     private float timeLeft;
@@ -44,36 +49,40 @@ public class TimerManager : MonoBehaviour
         if (Instance == null) Instance = this;
         else { Destroy(gameObject); return; }
 
-        // XR
-        xrOrigin = FindObjectOfType<XROrigin>(true);
+        if (xrOrigin == null) xrOrigin = FindObjectOfType<XROrigin>(true);
 
-        // Spawn otomatik bul
         if (basketSpawnPoint == null)
         {
             var go = GameObject.Find("BasketSpawnPoint");
             if (go != null) basketSpawnPoint = go.transform;
         }
 
-        // UI roots (isimle)
-        gameCanvas = GameObject.Find("GameCanvas");
-        startPanel = GameObject.Find("StartPanel");
-        gameUIRoot = GameObject.Find("GameUIRoot");
-        endPanel = GameObject.Find("EndPanel");
+        // Fallback find (Inspector boşsa)
+        if (startCanvasRoot == null) startCanvasRoot = GameObject.Find("GameCanvas");
+        if (hudCanvasRoot == null) hudCanvasRoot = GameObject.Find("HUDCanvas");
+        if (endCanvasRoot == null) endCanvasRoot = GameObject.Find("EndCanvas");
 
-        // Texts (isimle, yoksa fallback)
-        timerText = FindTMP("TimerText", gameUIRoot);
-        endTitleText = FindTMP("EndTitleText", endPanel);
-        endScoreText = FindTMP("EndScoreText", endPanel);
+        if (startPanel == null) startPanel = GameObject.Find("StartPanel");
+        if (gameUIRoot == null) gameUIRoot = GameObject.Find("GameUIRoot");
+        if (endPanel == null) endPanel = GameObject.Find("EndPanel");
 
-        // Buttons (isimle, yoksa fallback)
-        startButton = FindButton("StartButton", startPanel);
-        replayButton = FindButton("ReplayButton", endPanel);
-        exitButton = FindButton("ExitButton", endPanel);
+        if (timerText == null) timerText = FindTMP("TimerText", gameUIRoot);
+        if (endTitleText == null) endTitleText = FindTMP("EndTitleText", endPanel);
+        if (endScoreText == null) endScoreText = FindTMP("EndScoreText", endPanel);
+
+        if (startButton == null) startButton = FindButton("StartButton", startPanel);
+        if (replayButton == null) replayButton = FindButton("ReplayButton", endPanel);
+        if (exitButton == null) exitButton = FindButton("ExitButton", endPanel);
     }
 
     private void Start()
     {
-        // Listenerları garanti bağla
+        // Canvas kökleri açık kalsın (panel aç/kapa yapacağız)
+        SetActiveSafe(startCanvasRoot, true);
+        SetActiveSafe(hudCanvasRoot, true);
+        SetActiveSafe(endCanvasRoot, true);
+
+        // Listener bağla
         if (startButton != null)
         {
             startButton.onClick.RemoveAllListeners();
@@ -93,10 +102,13 @@ public class TimerManager : MonoBehaviour
         }
 
         // başlangıç UI
-        SetActiveSafe(gameCanvas, false);
         SetActiveSafe(startPanel, false);
         SetActiveSafe(gameUIRoot, false);
         SetActiveSafe(endPanel, false);
+
+        UpdateTimerUI(totalTimeSeconds);
+        ScoreManager.Instance?.UpdateRecordText();
+        ScoreManager.Instance?.UpdateScoreTextImmediate();
     }
 
     private void Update()
@@ -117,18 +129,12 @@ public class TimerManager : MonoBehaviour
     {
         inGameArea = true;
 
-        SetActiveSafe(gameCanvas, true);
-        ForceVisibleScale(gameCanvas);
-
-        // Canvas world-space ise kameraya yapıştır → HUD kesin görünür
-        AttachCanvasToCameraIfWorldSpace();
-
-        // Start ekranı
+        // Start ekranı (world)
         SetActiveSafe(startPanel, true);
+
+        // HUD kapalı, End kapalı
         SetActiveSafe(gameUIRoot, false);
         SetActiveSafe(endPanel, false);
-
-        ForceVisibleScale(startPanel);
 
         UpdateTimerUI(totalTimeSeconds);
         ScoreManager.Instance?.UpdateRecordText();
@@ -143,16 +149,13 @@ public class TimerManager : MonoBehaviour
         timeLeft = totalTimeSeconds;
         playing = true;
 
-        // reset
         ScoreManager.Instance?.ResetScore();
         ResetAllCarryObjects();
 
-        // HUD aç
+        // HUD aç, Start/End kapa
         SetActiveSafe(startPanel, false);
         SetActiveSafe(endPanel, false);
         SetActiveSafe(gameUIRoot, true);
-
-        ForceVisibleScale(gameUIRoot);
 
         UpdateTimerUI(timeLeft);
         ScoreManager.Instance?.UpdateRecordText();
@@ -173,12 +176,11 @@ public class TimerManager : MonoBehaviour
     {
         playing = false;
 
-        // Oyun HUD açık kalsın (skor/rekor görünür)
+        // HUD açık kalsın, EndPanel aç
         SetActiveSafe(gameUIRoot, true);
+        SetActiveSafe(endCanvasRoot, true);
         SetActiveSafe(endPanel, true);
         SetActiveSafe(startPanel, false);
-
-        ForceVisibleScale(endPanel);
 
         int baseScore = ScoreManager.Instance != null ? ScoreManager.Instance.score : 0;
         int bonus = win ? Mathf.CeilToInt(timeLeft) : 0;
@@ -197,6 +199,7 @@ public class TimerManager : MonoBehaviour
 
         ScoreManager.Instance?.TrySetNewRecord();
         ScoreManager.Instance?.UpdateRecordText();
+        ScoreManager.Instance?.UpdateScoreTextImmediate();
     }
 
     public void ReplayGame()
@@ -210,11 +213,9 @@ public class TimerManager : MonoBehaviour
         playing = false;
         inGameArea = false;
 
-        // oyun state reset
         placedCount = 0;
         timeLeft = totalTimeSeconds;
 
-        // skor + objeler reset
         ScoreManager.Instance?.ResetScore();
         ResetAllCarryObjects();
 
@@ -222,12 +223,14 @@ public class TimerManager : MonoBehaviour
         SetActiveSafe(startPanel, false);
         SetActiveSafe(gameUIRoot, false);
         SetActiveSafe(endPanel, false);
-        SetActiveSafe(gameCanvas, false);
 
-        // Basket sahasına gönder
+        // İstersen canvas köklerini de kapat:
+        // SetActiveSafe(startCanvasRoot, false);
+        // SetActiveSafe(hudCanvasRoot, false);
+        // SetActiveSafe(endCanvasRoot, false);
+
         TeleportTo(basketSpawnPoint);
         FindObjectOfType<GameStartTrigger>(true)?.ResetTrigger();
-
     }
 
     // ---------------- helpers ----------------
@@ -261,38 +264,9 @@ public class TimerManager : MonoBehaviour
         xrOrigin.MatchOriginUpCameraForward(Vector3.up, flatForward);
     }
 
-    private void AttachCanvasToCameraIfWorldSpace()
-    {
-        if (gameCanvas == null || xrOrigin == null) return;
-
-        var canvas = gameCanvas.GetComponent<Canvas>();
-        if (canvas == null) return;
-
-        // Sadece WorldSpace ise kameraya yapıştır
-        if (canvas.renderMode != RenderMode.WorldSpace) return;
-
-        Camera cam = xrOrigin.Camera;
-        if (cam == null) return;
-
-        gameCanvas.transform.SetParent(cam.transform, false);
-        gameCanvas.transform.localPosition = new Vector3(0f, 0f, 1.25f);
-        gameCanvas.transform.localRotation = Quaternion.identity;
-        gameCanvas.transform.localScale = Vector3.one * 0.001f;
-
-        canvas.worldCamera = cam;
-    }
-
     private static void SetActiveSafe(GameObject go, bool active)
     {
         if (go != null) go.SetActive(active);
-    }
-
-    private static void ForceVisibleScale(GameObject go)
-    {
-        if (go == null) return;
-        var rt = go.GetComponent<RectTransform>();
-        if (rt != null && (rt.localScale.x == 0f || rt.localScale.y == 0f || rt.localScale.z == 0f))
-            rt.localScale = Vector3.one;
     }
 
     private static Button FindButton(string name, GameObject root)
